@@ -1,0 +1,8 @@
+# Section owners are asked to review pull requests that touch their folder.
+# Replace the placeholders with real GitHub teams or usernames once agreed.
+
+# /docs/workflows/       @<ona-team>
+# /docs/integrations/    @<openfn-team>
+# /docs/architecture/    @<datafi-team>
+# /docs/standards/       @<datafi-team>
+# /docs/implementation/  @<datafi-team>
