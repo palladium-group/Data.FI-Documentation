@@ -10,7 +10,7 @@ Requires Node.js 20 or newer.
 
 ```bash
 npm install
-npm start       # http://localhost:3000
+npm start       # http://localhost:3000/Data.FI-Documentation/
 npm run build   # production build; fails on broken links
 npm run serve   # serve the production build (search works here)
 ```
@@ -27,4 +27,8 @@ sidebars.js           side menus (generated from the docs/ folders)
 
 ## Deployment
 
-To be decided (GitHub Pages or Cloudflare Pages). `npm run build` produces a static site in `build/` that either can serve.
+The site is published on GitHub Pages at https://palladium-group.github.io/Data.FI-Documentation/.
+
+Every push to `main` builds and deploys the site automatically through `.github/workflows/deploy.yml`, usually within a couple of minutes. Progress is visible in the repository's **Actions** tab. A deploy can also be started manually from **Actions → Deploy to GitHub Pages → Run workflow**.
+
+Pull requests run a build check (`.github/workflows/build.yml`) that fails on broken links, so problems are caught before they reach `main`.
