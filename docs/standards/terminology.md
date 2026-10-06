@@ -21,4 +21,4 @@ Value sets (danger signs, family planning methods, HIV, TB, CEBS signal types, v
 
 ## Terminology ownership
 
-Record who approves each code system, value set, translation and mapping.
+Record who approves each code system, value set, translation, and mapping. Displays and translations used in forms must come from that approved set. See [Content ownership](../implementation/governance.md#content-ownership).

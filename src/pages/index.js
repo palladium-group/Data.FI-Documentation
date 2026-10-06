@@ -68,6 +68,12 @@ export default function Home() {
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <HomepageHeader />
       <main className="container margin-vert--xl">
+        <p>
+          This portal is the implementation companion to the Digital Community System Toolkit.
+          Country teams use it to turn an approved scope into workflows, configuration,
+          integrations, testing, deployment, and operations. The reference eCHIS is one worked
+          example of that method.
+        </p>
         <Heading as="h2">I want to…</Heading>
         <table className={styles.journeys}>
           <tbody>

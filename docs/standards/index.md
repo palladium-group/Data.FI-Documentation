@@ -9,7 +9,7 @@ sidebar_label: Overview
 **Owner:** Data.FI (proposed) · **Status:** Draft
 :::
 
-The [Data.FI Reference eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) is the computable contract. It is the authoritative source for profiles, extensions, value sets, code systems, search parameters and examples. These pages explain how and where each standard is used, and link into the Implementation Guide rather than copying it.
+The [Data.FI Reference eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) is the computable contract. It is the authoritative source for profiles, extensions, value sets, code systems, search parameters, examples, and design notes. These pages explain implementation decisions and where each standard is used. They link into the Implementation Guide rather than copying it.
 
 ## How eCHIS produces FHIR records
 

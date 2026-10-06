@@ -12,6 +12,8 @@ status: draft
 
 Metadata packages are not standalone deliverables. Each package is listed on the component page that ships it and the standard it implements. This page is the index.
 
+Packages cover the configuration domains in [Configuration](../implementation/configuration.md): forms and rules, terminology, tasking, reporting, and integration settings. Version and owner belong in the country configuration inventory.
+
 | Package | Component | Implements | Version | Owner |
 |---|---|---|---|---|
 | | | | | |

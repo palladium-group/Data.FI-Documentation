@@ -1,6 +1,6 @@
 # Data.FI Documentation
 
-The eCHIS Implementation Portal: one place where implementers navigate between community health workflows, reference architecture, integration workflows, standards, metadata packages and implementation guidance for the Data.FI reference eCHIS. Built with [Docusaurus](https://docusaurus.io/).
+The eCHIS Implementation Portal: one place where implementers navigate between community health workflows, reference architecture, integration workflows, standards, metadata packages and implementation guidance for the Data.FI reference eCHIS. Content follows the Digital Community Systems Implementation Guide: the method is country-led, and the reference eCHIS is the worked example. Built with [Docusaurus](https://docusaurus.io/).
 
 - **Contributing:** see [CONTRIBUTING.md](CONTRIBUTING.md). Content is plain Markdown in `docs/`, one folder per section, with templates in `templates/`.
 - **Standards:** the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) is the computable source of truth. The portal links into it rather than copying it.
