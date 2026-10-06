@@ -10,12 +10,20 @@ status: draft
 **Owner:** Data.FI (proposed) · **Status:** Draft
 :::
 
-Separate environments protect production data and create stable spaces for development, integration testing, training and acceptance.
+Separate environments protect production data and create stable spaces for development, integration testing, training, and acceptance. Capacity planning should consider expected users, households, records, forms, sync patterns, integrations, analytics load, growth, availability, backup, and recovery targets.
 
 ```mermaid
 flowchart LR
   D[Development] --> Q[Integration / QA] --> T[Training] --> U[UAT] --> P[Production]
 ```
+
+| Environment | Use |
+|---|---|
+| Development | Build and validate with synthetic data |
+| Integration / QA | Test complete workflows and interfaces |
+| Training | Practice with resettable accounts and data |
+| UAT | Complete formal acceptance |
+| Production | Deliver live services under controlled operations |
 
 ## Infrastructure decision record
 
