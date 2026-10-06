@@ -15,7 +15,7 @@ The narrative should be readable by program teams. The detailed model should be 
 
 Workflows use stable identifiers: `DCS.[domain].[process]` for a workflow, `.[activity]` for its activities, and `DE`, `DT`, `IND`, `REQ` and `INT` for data elements, decision tables, indicators, requirements and interfaces.
 
-Example: `DCS.MNCH.ANC.04` is an antenatal activity, `DCS.MNCH.ANC.04.DE.01` is a linked data element, and `DCS.MNCH.ANC.DT.03` is a decision rule used at that point.
+Example: `DCS.MNCH.ANC.04` is an antenatal activity, `DCS.MNCH.ANC.04.DE.01` is a linked data element, and `DCS.MNCH.ANC.DT.03` is a decision rule used at that point. Activity numbers on these pages follow the process order in this draft. Confirm them in the country package before they are treated as stable.
 
 ## Workflow package
 
