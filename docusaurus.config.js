@@ -23,9 +23,11 @@ const config = {
     v4: true,
   },
 
-  // Placeholder until hosting is agreed.
-  url: 'https://example.org',
-  baseUrl: '/',
+  url: 'https://palladium-group.github.io',
+  baseUrl: '/Data.FI-Documentation/',
+  trailingSlash: true,
+  organizationName: 'palladium-group',
+  projectName: 'Data.FI-Documentation',
 
   onBrokenLinks: 'throw',
   markdown: {
