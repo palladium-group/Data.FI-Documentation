@@ -4,13 +4,8 @@ title: <Integration name>
 description: <One sentence: what outcome this exchange achieves.>
 sidebar_position: <10, 20, 30…>
 owner: <Team responsible, e.g. OpenFn>
-status: draft # draft | in-review | approved
 dcs_id: DCS.INT.<AREA>.<NN> # e.g. DCS.INT.REF.01
 ---
-
-:::info Page details
-**Interface ID:** `DCS.INT.<AREA>.<NN>` · **Owner:** <team> · **Status:** Draft
-:::
 
 ## Overview
 

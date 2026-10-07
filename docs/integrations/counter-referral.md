@@ -3,13 +3,8 @@ title: Facility outcome and counter-referral
 description: Receive the facility's service outcome, update referral status and create any follow-up task.
 sidebar_position: 30
 owner: OpenFn
-status: draft
 dcs_id: DCS.INT.REF.02
 ---
-
-:::info Page details
-**Interface ID:** `DCS.INT.REF.02` · **Owner:** OpenFn (proposed) · **Status:** Draft
-:::
 
 ## Overview
 
@@ -19,6 +14,7 @@ dcs_id: DCS.INT.REF.02
 | Pattern | Closed-loop |
 | Route | Facility EMR or referral system → integration service → community record. Reference: OpenMRS, OpenFn, eCHIS |
 | Trigger | The facility records a qualifying disposition, service outcome, or closure event |
+| OpenFn workflow | WF3 · OpenMRS to eCHIS |
 | Used by workflows | [Referral and counter-referral](../workflows/referral-counter-referral.md) |
 
 ## Components involved
@@ -69,11 +65,43 @@ Limit the outcome to the authorized community scope. Do not copy the full facili
 
 Outcomes received, matched referrals, referrals closed, follow-up tasks created, unmatched outcomes, duplicate outcomes, and processing failures.
 
+## Reference implementation
+
+How OpenFn WF3 implements this interface in the reference eCHIS. Full field mappings are kept in the eCHIS Mapping Specification.
+
+**Trigger:** a referral order in OpenMRS is completed. OpenFn matches it to the originating ServiceRequest through the source-referral observation that [community referral](./community-referral.md) wrote on the encounter.
+
+OpenMRS's FHIR API does not offer Procedure or ClinicalImpression, so OpenFn writes the closure record itself from the matched order.
+
+```mermaid
+sequenceDiagram
+  participant R as OpenMRS
+  participant O as OpenFn WF3
+  participant H as HAPI FHIR
+  R->>O: Completed referral order
+  O->>H: POST ClinicalImpression
+  O->>H: PUT ServiceRequest status completed
+```
+
+1. **Create the closure record.** `POST ClinicalImpression` (status `completed`) with the same patient as the referral, the order's discharge time as the date, a link to the ServiceRequest, and the clinician's comment as a note when one exists.
+2. **Close the referral.** `PUT` the ServiceRequest with status `completed`. Every other field is sent back unchanged.
+
+### Safeguards
+
+- The referral is closed only after the closure record is saved, so a failed write never leaves a referral marked closed with no outcome.
+- The note is left out entirely when the clinician wrote no comment.
+- The patient reference comes from the original referral, not from OpenMRS.
+
 ## Standards & FHIR artifacts
 
 See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/).
 
 ## Metadata packages
+
+- Uses the OpenMRS referral metadata set up for [community referral](./community-referral.md)
+- OpenFn WF3 job and credentials
+
+See the [Metadata packages index](../standards/metadata-packages.md).
 
 ## Tests
 

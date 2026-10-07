@@ -4,12 +4,7 @@ title: <Page title>
 description: <One sentence summary.>
 sidebar_position: <10, 20, 30…>
 owner: <Team responsible>
-status: draft # draft | in-review | approved
 ---
-
-:::info Page details
-**Owner:** <team> · **Status:** Draft
-:::
 
 ## Purpose
 

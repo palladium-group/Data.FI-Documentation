@@ -3,12 +3,7 @@ title: Training
 description: Role- and task-based training with competency checks.
 sidebar_position: 70
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Training should combine service-delivery content and application practice. Prepare supervisors, administrators, and support teams before frontline deployment. Use a distinct training environment with resettable accounts and realistic scenarios. See [Environments and infrastructure](../architecture/environments-infrastructure.md).
 

@@ -3,13 +3,8 @@ title: Analytics ingestion and transformation
 description: Load new and changed FHIR resources into governed analytical models for dashboards, indicators and reporting.
 sidebar_position: 70
 owner: OpenFn
-status: draft
 dcs_id: DCS.INT.ANA.01
 ---
-
-:::info Page details
-**Interface ID:** `DCS.INT.ANA.01` · **Owner:** OpenFn (proposed) · **Status:** Draft
-:::
 
 ## Overview
 
@@ -19,6 +14,7 @@ dcs_id: DCS.INT.ANA.01
 | Pattern | Analytical |
 | Route | FHIR server → ingestion → raw warehouse → transformations → analytical marts and dashboards. Reference: HAPI FHIR, warehouse, Superset |
 | Trigger | A scheduled incremental run, or an approved event trigger |
+| OpenFn workflow | WF8 · Data warehouse ingest |
 | Used by workflows | [Scheduled community visit](../workflows/scheduled-community-visit.md) and any workflow whose records are approved for analytics |
 
 ## Components involved
@@ -71,11 +67,48 @@ Ingest only approved resource types. Apply the same access and retention rules a
 
 Resources read, inserted, updated, quarantined, and delayed. Transformation tests passed or failed. Model freshness. Dashboard refresh status.
 
+## Reference implementation
+
+How OpenFn WF8 implements this interface in the reference eCHIS. Full field mappings are kept in the eCHIS Mapping Specification.
+
+```mermaid
+sequenceDiagram
+  participant H as HAPI FHIR
+  participant O as OpenFn WF8
+  participant W as PostgreSQL raw schema
+  O->>H: Resources updated since the cursor
+  H-->>O: Patient, Encounter, Observation
+  O->>W: Upsert into raw.hapi_fhir_resources
+  O->>O: Advance the cursor
+```
+
+OpenFn reads the configured resource types (Patient, Encounter and Observation) changed since the last run, and upserts each one into `raw.hapi_fhir_resources`. Staging and analytics models are then built from that table, including the `dhis2_export` model that [routine reporting](./routine-reporting.md) sends.
+
+| Column | Source | Rule |
+|---|---|---|
+| `resource_type` | `resourceType` | Part of the upsert key |
+| `resource_id` | `id` | Part of the upsert key |
+| `version_id` | `meta.versionId` | Overwritten with the latest version |
+| `last_updated_at` | `meta.lastUpdated` | Drives the incremental `_lastUpdated` filter |
+| `source_url` | Server URL, type and id | Added by the workflow |
+| `extracted_at` | Fetch time | Also used to advance the cursor |
+| `data_payload` | Whole resource | Stored as JSON |
+
+### Safeguards
+
+- Upserting on type and id means a re-run never creates duplicates.
+- `data_payload` holds patient demographics, so it is kept out of OpenFn run logs.
+
 ## Standards & FHIR artifacts
 
 See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/). Selective sync keeps device-needed records on the client. This interface loads the records approved for analytics.
 
 ## Metadata packages
+
+- Warehouse `raw`, `staging` and `analytics` schemas and their models
+- OpenFn WF8 job, resource type list and credentials
+
+See the [Metadata packages index](../standards/metadata-packages.md).
 
 ## Tests
 

@@ -3,12 +3,7 @@ title: Environments and infrastructure
 description: Environments, hosting and capacity planning.
 sidebar_position: 30
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Separate environments protect production data and create stable spaces for development, integration testing, training, and acceptance. Capacity planning should consider expected users, households, records, forms, sync patterns, integrations, analytics load, growth, availability, backup, and recovery targets.
 

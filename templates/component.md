@@ -4,13 +4,8 @@ title: <Component name>
 description: <One sentence: what this component does in the reference eCHIS.>
 sidebar_position: <10, 20, 30…>
 owner: <Team responsible>
-status: draft # draft | in-review | approved
 layer: <Experience | Shared services | Ecosystem connections>
 ---
-
-:::info Page details
-**Layer:** <layer> · **Owner:** <team> · **Status:** Draft
-:::
 
 ## Role in the architecture
 

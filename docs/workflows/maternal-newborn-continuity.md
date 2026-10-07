@@ -1,75 +1,75 @@
 ---
 title: Maternal and newborn continuity
-description: Continuity from pregnancy identification through antenatal care, birth outcome and postnatal follow-up.
+description: Follow a pregnancy from identification through monthly ANC visits, birth and the first six weeks after.
 sidebar_position: 30
 owner: Ona
-status: draft
 dcs_id: DCS.MNCH.ANC
 ---
 
-:::info Page details
-**Workflow ID:** `DCS.MNCH.ANC` (proposed) · **Owner:** Ona (proposed) · **Status:** Draft
-:::
-
 ## Objective
 
-Maintain continuity from pregnancy identification through antenatal contacts, birth outcome, postnatal follow-up, danger-sign referral, and transition to routine maternal and child services.
+Identify pregnant women early, support monthly antenatal care at home, record the birth outcome, and follow mother and baby through the first six weeks. The CHW encourages facility care and refers when danger signs appear. This is a community workflow, not a clinical guideline.
 
-This is an illustrative community workflow, not a clinical guideline. Countries should populate clinical content from approved national and WHO guidance.
-
-## Process header
-
-| Field | Value |
-|---|---|
-| Trigger | Pregnancy is identified in the community or linked from a facility record |
-| End state | Pregnancy pathway closed, maternal and newborn follow-up tasks created, or the person transitioned to routine services |
-| Primary persona | Community health worker |
-| Supporting actors | Pregnant woman, supervisor, facility clinician |
-| Locations | Household, community, and facility |
-| Works offline? | Yes for community contacts. Facility linkage and referral exchange sync when connected |
-
-## Process
+## How it works
 
 ```mermaid
 flowchart LR
-  S0["Identify pregnancy"]
-  S1["Plan contacts"]
-  S2["Community follow-up"]
-  S3["Record outcome"]
-  S4["Postnatal continuity"]
-  S0 --> S1 --> S2 --> S3 --> S4
+  A[Pregnancy assessment] --> B[Monthly ANC visits]
+  B --> C[Pregnancy outcome]
+  C --> D[PNC visits, first 6 weeks]
+  B --> R[Referral and closure]
+  C --> R
+  D --> R
 ```
 
-## Activities
+1. The CHW opens **Pregnancy assessment** from a woman's profile (aged 16 to 49). She joins the ANC register.
+2. A monthly **Record ANC Visit** task appears. Each visit sets the date of the next one.
+3. After the birth, **Pregnancy outcome** moves her to the PNC register. Each baby is registered as a household member.
+4. PNC visits cover mother and baby for six weeks, after which she leaves the PNC register.
 
-| ID | Activity | Actor | System action | Data created or reused |
-|---|---|---|---|---|
-| DCS.MNCH.ANC.01 | Identify pregnancy | Community health worker | Confirm the person record, capture pregnancy status and timing, record the source, and evaluate an immediate referral trigger | Pregnancy status, timing, source |
-| DCS.MNCH.ANC.02 | Plan contacts | System | Create scheduled antenatal and community follow-up tasks | Task schedule |
-| DCS.MNCH.ANC.03 | Community follow-up | Community health worker | Track scheduled and completed contacts, surface missed care, and record community counselling and referral | Attendance, counselling, referral status |
-| DCS.MNCH.ANC.04 | Danger signs | Community health worker | Invoke the country-approved decision table, display urgent action, and create a referral | Referral, escalation, acknowledgment |
-| DCS.MNCH.ANC.05 | Record birth outcome | Authorized source | Capture minimum outcome data, create or link the newborn, and update maternal status | Pregnancy outcome, newborn record, deaths and transfers under approved rules |
-| DCS.MNCH.ANC.06 | Postnatal continuity | System | Schedule maternal and newborn tasks and close the pregnancy pathway | Follow-up tasks, immunization linkage, unresolved risks |
+## What the CHW records
 
-Do not duplicate the facility clinical record. Link to it when it is available. Record deaths and transfers only under approved rules.
+| Form | Records |
+|---|---|
+| Pregnancy assessment | Whether the pregnancy was confirmed at a facility, ANC card, last menstrual period (the app calculates gestational age and expected delivery date), ANC visits so far, danger signs, HIV status |
+| ANC home visit | Whether she made an ANC facility visit, MUAC, danger signs, date of the next visit |
+| Pregnancy outcome | Born alive or stillborn, delivery date and place, mode of delivery, who delivered, number of babies, mother and newborn danger signs, FP commodities issued |
+| PNC home visit | Child health card, baby weight, mother and baby danger signs, family planning uptake |
+| Referral closure | Whether she reached the facility, which one, action taken, follow-up needed |
 
-## Decision support
+## Referral triggers
 
-| ID | Trigger | Rule | Output | Approved by |
-|---|---|---|---|---|
-| DCS.MNCH.ANC.DT.01 | Pregnancy identification or follow-up | Country-approved danger-sign table | Urgent action and referral | Clinical authority |
+| When | Trigger |
+|---|---|
+| Pregnancy assessment | No ANC card (she is not enrolled until she has one), danger signs |
+| ANC visit | Danger signs, red or yellow MUAC |
+| Pregnancy outcome | Delivered in the community, delivered by a traditional birth attendant, mother or newborn danger signs |
+| PNC visit | No child health card, mother or baby danger signs |
+
+See [Referral and counter-referral](./referral-counter-referral.md).
+
+## What the system creates
+
+| Form | FHIR records |
+|---|---|
+| Pregnancy assessment | Pregnancy status and expected delivery date, a Pregnancy Condition (SNOMED 77386006), the first ANC task |
+| ANC visit | Visit findings and the next ANC task |
+| Pregnancy outcome | Pregnancy outcome, a Postpartum Condition (SNOMED 133906008), the first PNC task |
+| PNC visit | Baby weight, danger signs and the next PNC task |
+
+Pregnancy status, expected delivery date, outcome and baby weight follow International Patient Summary profiles. See [IPS alignment](../standards/ips-alignment.md).
 
 ## Integrations
 
-- [Community referral to facility](../integrations/community-referral.md)
-- [Facility outcome and counter-referral](../integrations/counter-referral.md)
+- [Community referral to facility](../integrations/community-referral.md) (referral types `anc` and `pnc`)
+- [Routine aggregate reporting](../integrations/routine-reporting.md)
 
 ## Standards & FHIR artifacts
 
-See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) for pregnancy status, estimated delivery date, and related profiles.
+eCHIS Pregnancy Status, Estimated Delivery Date, Pregnancy Outcome, Baby Weight, Program Condition and Task profiles. Details in the [Implementation Guide integrated care page](https://palladium-group.github.io/datafi-echis-ig/integrated-care.html).
 
 ## Metadata packages
 
-## Tests
+- ANC and PNC questionnaires, register configs and scheduling definitions
 
-Immediate referral on an approved danger sign. Missed contact surfaced. Facility record linked without duplication. Birth outcome from an authorized source. Postnatal tasks created and pregnancy pathway closed.
+See the [Metadata packages index](../standards/metadata-packages.md).

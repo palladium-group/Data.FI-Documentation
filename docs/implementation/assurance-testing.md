@@ -3,12 +3,7 @@ title: Assurance and testing
 description: Configuration, workflow, integration, system and acceptance testing.
 sidebar_position: 50
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Build assurance into delivery. Testing should trace back to approved requirements.
 

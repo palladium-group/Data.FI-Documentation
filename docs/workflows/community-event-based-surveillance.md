@@ -1,59 +1,57 @@
 ---
 title: Community event-based surveillance
-description: Capture, verify and escalate community signals, and exchange verified events with the surveillance platform.
-sidebar_position: 50
+description: Report unusual health events from the community, verify them with the supervisor, and escalate to the district.
+sidebar_position: 80
 owner: Ona
-status: draft
 dcs_id: DCS.SURV.CEBS
 ---
 
-:::info Page details
-**Workflow ID:** `DCS.SURV.CEBS` (proposed) · **Owner:** Ona (proposed) · **Status:** Draft
-:::
-
 ## Objective
 
-Capture a community signal, apply an approved verification process, escalate qualifying events, exchange the minimum required information with the surveillance platform, and maintain closure status.
+Pick up public health threats early, before cases reach a facility. The CHW reports unusual events from the community, the supervisor verifies them, and confirmed threats reach the district surveillance team. Signals cover human, animal and environmental hazards (One Health).
 
-## Process header
-
-| Field | Value |
-|---|---|
-| Trigger | A community health worker observes a signal |
-| End state | Signal verified, rejected, or marked duplicate; qualifying events exchanged; closure and feedback recorded |
-| Primary persona | Community health worker |
-| Supporting actors | Supervisor, surveillance officer |
-| Locations | Community |
-| Works offline? | Capture can be offline. Exchange and alerts run when the approved event state is reached and connectivity allows |
-
-## Process
+## How it works
 
 ```mermaid
 flowchart LR
-  S0["Signal observed"]
-  S1["Validate submission"]
-  S2["Supervisor verification"]
-  S3["Exchange and alert"]
-  S4["Close and learn"]
-  S0 --> S1 --> S2 --> S3 --> S4
+  A[CHW reports a signal] --> B[Task on supervisor app]
+  B --> C[Supervisor verifies by phone or visit]
+  C --> D{Threat exists?}
+  D -- Yes --> E[Signal confirmed, DHIS2 and SMS alert]
+  D -- No --> F[Signal cancelled]
 ```
 
-## Activities
+1. The CHW opens the signal report from **CEBS New Signals**. Supervisors can also report a signal themselves.
+2. A verification task appears straight away under **CEBS Incoming Signals** on the [supervisor app](../architecture/components/supervisor-app.md).
+3. The supervisor verifies the signal and records whether the threat exists.
+4. Confirmed signals go to DHIS2 Tracker for the district team, and an SMS alert is sent. Handled signals move to **CEBS History**.
 
-| ID | Activity | Actor | System action | Data created or reused |
-|---|---|---|---|---|
-| DCS.SURV.CEBS.01 | Record signal | Community health worker | Capture person, event, time, place, description, and immediate action | Signal report |
-| DCS.SURV.CEBS.02 | Validate submission | System | Check completeness, duplicate risk, location, and reporter assignment | Validation result |
-| DCS.SURV.CEBS.03 | Verify | Supervisor | Record verified, rejected, duplicate, or needs follow-up | Verification status |
-| DCS.SURV.CEBS.04 | Exchange and alert | System | Submit the verified event and send the configured notification | Destination identifier, alert result |
-| DCS.SURV.CEBS.05 | Close and learn | Supervisor | Track acknowledgment, investigation status, outcome, and feedback to the community team | Closure status |
+## What is recorded
 
-## Decision support
+| Form | Records |
+|---|---|
+| CHW signal report | Whether an unusual event happened in the past 30 days, signal type (one per report), whether it is in the CHW's area, description, GPS location, CHW name, phone and area |
+| Supervisor verification | Method (phone call or home visit), description, matching signal type, threat start time, people ill and dead, animals involved (types, affected, dead), information sources, whether the threat still exists, date the facility was informed, animal health referral, risk classification (low, medium, high) |
 
-| ID | Trigger | Rule | Output | Approved by |
-|---|---|---|---|---|
-| DCS.SURV.CEBS.DT.01 | Submission | Completeness, duplicate risk, and assignment | Accept for review or return | Surveillance authority |
-| DCS.SURV.CEBS.DT.02 | Supervisor review | Approved verification criteria | Verified, rejected, duplicate, or needs follow-up | Surveillance authority |
+## Signal types
+
+| Signal | Example |
+|---|---|
+| Two or more people suddenly falling seriously ill or dying | Cluster of unexplained fever deaths |
+| Fever with signs of bleeding or red or yellow eyes | Suspected viral haemorrhagic fever |
+| Unexplained rash with fever and body weakness | Suspected mpox |
+| Sudden or unexplained animal death or strange behaviour | Livestock deaths, aggression, drooling |
+| Person bitten by a dog or wild animal | Suspected rabies exposure |
+| Abnormal change in drinking water | Contamination, algae bloom, pollution |
+| Abrupt climate-related event | Flooding, heatwave, drought |
+| Any other public health threat | Locust infestation, civil emergency |
+
+## What the system creates
+
+| Step | FHIR records |
+|---|---|
+| CHW report | A preliminary signal Observation anchored to the place (not a patient), the event location, and a verify-signal Task for the supervisor |
+| Supervisor verification | The signal becomes final (threat exists) or cancelled. The Task is completed. Risk, people affected and animals affected are recorded |
 
 ## Integrations
 
@@ -61,10 +59,11 @@ flowchart LR
 
 ## Standards & FHIR artifacts
 
-See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) for surveillance observation and task profiles.
+eCHIS Surveillance Observation and Surveillance Task profiles, and the CEBS signal type code system. Details in the [Implementation Guide CEBS page](https://palladium-group.github.io/datafi-echis-ig/cebs.html).
 
 ## Metadata packages
 
-## Tests
+- CHW signal report and supervisor verification forms, the CEBS registers on both apps, and the CEBS code systems
 
-Incomplete signal returned. Duplicate suspected. Supervisor rejects, verifies, or requests follow-up. Only verified events are exchanged. Alert uses the minimum approved content. Closure records investigation outcome and community feedback.
+See the [Metadata packages index](../standards/metadata-packages.md).
+

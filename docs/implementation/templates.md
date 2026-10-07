@@ -3,12 +3,7 @@ title: Templates and assets
 description: Reusable implementation templates.
 sidebar_position: 90
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Maintain one controlled country package that links planning decisions to implementation evidence. The package may use documents, spreadsheets, repositories, and computable specifications. Ownership and versioning should stay clear.
 
@@ -49,7 +44,7 @@ For each integration, also keep a workflow narrative, sequence diagram, field ma
 - Digital Community System Toolkit, including workshop and country-roadmap resources
 - [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) and its computable artifacts
 - Role-based community health worker, supervisor, administrator, and support guides
-- [Reference architecture](../architecture/index.md) and [environment specification](../architecture/environments-infrastructure.md)
+- [Reference architecture](../architecture/index.mdx) and [environment specification](../architecture/environments-infrastructure.md)
 - Integration workflow repository, mapping specifications, test fixtures, and runbooks
 - Country adaptation workbook and implementation evidence repository
 
