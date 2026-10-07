@@ -3,12 +3,7 @@ title: Getting started
 description: Choose the entry point that matches country readiness.
 sidebar_position: 10
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 This guide begins when a country is ready to turn Digital Community System Toolkit decisions into specifications, configuration, integrations, deployment, and operations. The Toolkit supports collaborative planning and person-centered design. This portal starts at the handoff: approved scope, priorities, owners, requirements inputs, and a roadmap.
 

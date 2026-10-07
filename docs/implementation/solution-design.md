@@ -3,12 +3,7 @@ title: Solution design and requirements
 description: From personas and use cases to testable requirements and releases.
 sidebar_position: 30
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Use the personas and prioritized use cases from the Toolkit as the basis for implementation. Begin with the user outcome, operating context, service workflow, and information needed to complete the work. Screens and products come after that.
 

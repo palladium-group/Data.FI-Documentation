@@ -5,11 +5,7 @@ sidebar_position: 1
 sidebar_label: Overview
 ---
 
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
-
-This section helps country teams turn Digital Community System Toolkit decisions into a governed, configured, connected, tested, and supportable digital community system. The [reference architecture](../architecture/index.md) is one worked example. Country teams may adopt it, adapt selected parts, or reuse the workflows and integration patterns with another platform.
+This section helps country teams turn Digital Community System Toolkit decisions into a governed, configured, connected, tested, and supportable digital community system. The [reference architecture](../architecture/index.mdx) is one worked example. Country teams may adopt it, adapt selected parts, or reuse the workflows and integration patterns with another platform.
 
 Responsible authorities approve service content, workflows, terminology, identifiers, access, architecture, hosting, exchange, reporting, privacy, security, and operations.
 
@@ -34,4 +30,4 @@ Maintain traceability from each approved user need to a workflow, requirement, c
 - [Operations and sustainability](./operations-sustainability.md)
 - [Templates and assets](./templates.md)
 
-Service workflows, the reference architecture, exchanges, and standards live in their own sections: [Workflows](../workflows/index.md), [Architecture](../architecture/index.md), [Integrations](../integrations/index.md), and [Standards](../standards/index.md).
+Service workflows, the reference architecture, exchanges, and standards live in their own sections: [Workflows](../workflows/index.md), [Architecture](../architecture/index.mdx), [Integrations](../integrations/index.md), and [Standards](../standards/index.md).

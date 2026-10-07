@@ -3,21 +3,24 @@ title: Program dashboards (Superset)
 description: Program and indicator dashboards over the analytics warehouse.
 sidebar_position: 40
 owner: Data.FI
-status: draft
 layer: Experience
 ---
 
-:::info Page details
-**Layer:** Experience · **Owner:** Data.FI (proposed) · **Status:** Draft
-:::
-
 ## Role in the architecture
 
-Program and indicator dashboards over the analytics warehouse.
+Programme and indicator dashboards over the analytics warehouse, for programme managers and analysts.
 
 ## Technology
 
+| Item | Value |
+|---|---|
+| Software | Apache Superset |
+| Data | Analytics tables in the [warehouse](./analytics-warehouse.md) |
+| Access | Roles from [Keycloak](./keycloak.md) |
+
 ## Workflows it supports
+
+Every workflow whose records are used for reporting.
 
 ## Integrations
 
@@ -25,6 +28,14 @@ Program and indicator dashboards over the analytics warehouse.
 
 ## Standards
 
+- SQL
+
 ## Metadata packages
 
+- Dashboards and their dataset definitions
+
+See the [Metadata packages index](../../standards/metadata-packages.md).
+
 ## Setup & configuration
+
+See [Configuration](../../implementation/configuration.md) and [Environments and infrastructure](../environments-infrastructure.md).

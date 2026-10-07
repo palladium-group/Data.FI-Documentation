@@ -5,10 +5,6 @@ sidebar_position: 1
 sidebar_label: Overview
 ---
 
-:::info Page details
-**Owner:** OpenFn (proposed) · **Status:** Draft
-:::
-
 Treat each interface as a business workflow. Start with the service or reporting outcome. Identify systems of record, stable identifiers, minimum data, terminology, security, timing, acknowledgments, return flows, retries, and reconciliation before writing integration code.
 
 ```mermaid
@@ -28,7 +24,7 @@ These specifications are illustrative. Production use requires approved endpoint
 
 ## Reference map
 
-The shared community record sits in the middle. Connections are patterns, not a fixed product list. The [reference architecture](../architecture/index.md) names one implementation of each connection.
+The shared community record sits in the middle. Connections are patterns, not a fixed product list. The [reference architecture](../architecture/index.mdx) names one implementation of each connection.
 
 | Connection | What moves |
 |---|---|
@@ -80,12 +76,12 @@ Reference endpoints, credentials, metadata identifiers, schedules, retention set
 
 ## Interfaces
 
-| Integration | ID | Pattern |
-|---|---|---|
-| [Identity reconciliation](./identity-reconciliation.md) | `DCS.INT.ID.01` | Transactional |
-| [Community referral to facility](./community-referral.md) | `DCS.INT.REF.01` | Closed-loop |
-| [Facility outcome and counter-referral](./counter-referral.md) | `DCS.INT.REF.02` | Closed-loop |
-| [Supply issue, receipt and adjustment](./supply-issue-receipt.md) | `DCS.INT.SCM.01 / DCS.INT.SCM.02` | Transactional |
-| [Surveillance and configured alerts](./surveillance-alerts.md) | `DCS.INT.SURV.01 / DCS.INT.SURV.02` | Transactional |
-| [Routine aggregate reporting](./routine-reporting.md) | `DCS.INT.REP.01` | Analytical |
-| [Analytics ingestion and transformation](./analytics-ingestion.md) | `DCS.INT.ANA.01` | Analytical |
+| Integration | ID | OpenFn workflow | Pattern |
+|---|---|---|---|
+| [Identity reconciliation](./identity-reconciliation.md) | `DCS.INT.ID.01` | WF1 | Transactional |
+| [Community referral to facility](./community-referral.md) | `DCS.INT.REF.01` | WF2 | Closed-loop |
+| [Facility outcome and counter-referral](./counter-referral.md) | `DCS.INT.REF.02` | WF3 | Closed-loop |
+| [Supply issue, receipt and adjustment](./supply-issue-receipt.md) | `DCS.INT.SCM.01 / DCS.INT.SCM.02` | WF4, WF5 | Transactional |
+| [Surveillance and configured alerts](./surveillance-alerts.md) | `DCS.INT.SURV.01 / DCS.INT.SURV.02` | WF6 | Transactional |
+| [Routine aggregate reporting](./routine-reporting.md) | `DCS.INT.REP.01` | WF7 | Analytical |
+| [Analytics ingestion and transformation](./analytics-ingestion.md) | `DCS.INT.ANA.01` | WF8 | Analytical |

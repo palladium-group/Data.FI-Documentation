@@ -1,20 +1,218 @@
+/* ------------------------------------------------------------------- hero */
+
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--echis-line);
+  background-color: #fff;
+  background-image: radial-gradient(circle, rgba(29, 95, 145, 0.14) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-position: right top;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3.5rem;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 3rem 0;
   }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--echis-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--echis-ink-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2aaa6f;
+  box-shadow: 0 0 0 3px rgba(42, 170, 111, 0.18);
+}
+
+.heroTitle {
+  max-width: 12ch;
+  margin-bottom: 1.25rem;
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.heroSubtitle {
+  max-width: 34rem;
+  margin-bottom: 2rem;
+  color: var(--echis-ink-soft);
+  font-size: 1.15rem;
+  line-height: 1.6;
 }
 
 .buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.buttons :global(.button) {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.buttons :global(.button--secondary) {
+  border: 1px solid var(--echis-line);
+  background: #fff;
+  color: var(--echis-ink);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0 0;
+  color: var(--echis-ink-faint);
+  font-size: 0.9rem;
+}
+
+.stats span::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  vertical-align: middle;
+}
+
+/* ---------------------------------------------------- architecture card */
+
+.snapshot {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--echis-line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 48px rgba(20, 40, 50, 0.08);
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.snapshot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 56px rgba(20, 40, 50, 0.12);
+  color: inherit;
+  text-decoration: none;
+}
+
+.snapshotHead {
+  display: flex;
+  justify-content: space-between;
+  color: var(--echis-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.snapshotOpen {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.snapshotCore {
+  padding: 0.75rem;
+  border: 1px solid rgba(61, 132, 203, 0.35);
+  border-radius: 10px;
+  background: rgba(61, 132, 203, 0.06);
+}
+
+.snapshotLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #3d84cb;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--echis-line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.snapshotLayer {
+  padding: 0.55rem;
+  border-radius: 10px;
+  background: #2aaa6f;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.snapshotStreams {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.stream {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 5%, #fff);
+  font-size: 0.8rem;
+}
+
+.streamName {
+  color: var(--echis-ink);
+  font-weight: 700;
+}
+
+.streamName em {
+  margin-left: 0.25rem;
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.streamSystems {
+  color: var(--echis-ink-soft);
 }
 
 .journeys {
@@ -29,12 +227,23 @@
 
 .card {
   height: 100%;
+  border: 1px solid var(--echis-line);
+  border-radius: 14px;
+  box-shadow: none;
   color: inherit;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 10px 28px rgba(20, 40, 50, 0.08);
   color: inherit;
   text-decoration: none;
-  border-color: var(--ifm-color-primary);
+}
+
+.card p {
+  margin-bottom: 0;
+  color: var(--echis-ink-soft);
 }

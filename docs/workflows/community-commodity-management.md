@@ -1,72 +1,62 @@
 ---
 title: Community commodity management
-description: Track commodities held by community workers, confirm issues and receipts, and record consumption and adjustments.
-sidebar_position: 60
+description: Track the CHW's stock, deduct what is issued during visits, and record counts, losses and restocks.
+sidebar_position: 90
 owner: Ona
-status: draft
 dcs_id: DCS.SCM.CHW
 ---
 
-:::info Page details
-**Workflow ID:** `DCS.SCM.CHW` (proposed) · **Owner:** Ona (proposed) · **Status:** Draft
-:::
-
 ## Objective
 
-Maintain an accountable view of commodities held by community workers, confirm issues and receipts, record consumption and adjustments, and exchange approved stock transactions with the logistics system.
+Give the CHW an accurate view of the commodities they hold, so they can serve clients and request restocks before running out.
 
-## Process header
-
-| Field | Value |
-|---|---|
-| Trigger | A central or facility system records stock issued to a community health worker |
-| End state | Receipt confirmed or discrepancy recorded, consumption and adjustments posted, and eligible transactions reconciled with the logistics system |
-| Primary persona | Community health worker |
-| Supporting actors | Storekeeper, supervisor, logistics system |
-| Locations | Community stock point and facility store |
-| Works offline? | Receipt confirmation and counts can be offline. Exchange runs when the transaction is approved |
-
-## Process
+## How it works
 
 ```mermaid
 flowchart LR
-  S0["Issue created"]
-  S1["Receipt task"]
-  S2["Confirm receipt"]
-  S3["Use and count"]
-  S4["Reconcile"]
-  S0 --> S1 --> S2 --> S3 --> S4
+  A[Stock issued in OpenLMIS] --> B[Confirm-receipt task]
+  B --> C[Stock on hand]
+  C --> D[Issued during visits, deducted automatically]
+  D --> E[Physical count and restock]
+  E --> C
 ```
 
-## Activities
+1. The **Inventory** register lists each commodity with its stock on hand and the date of its last physical count.
+2. Commodities issued during visits are deducted automatically. Each commodity's usage history is read-only.
+3. The CHW records a **physical count and restock**, from the register or the commodity profile.
 
-| ID | Activity | Actor | System action | Data created or reused |
-|---|---|---|---|---|
-| DCS.SCM.CHW.01 | Receive issue | Logistics system | Record stock issued to the worker | Issue transaction, commodity, quantity, locations |
-| DCS.SCM.CHW.02 | Create receipt task | System | Create an incoming-stock record and a confirmation task | Receipt task |
-| DCS.SCM.CHW.03 | Confirm receipt | Community health worker | Confirm quantity received or record a discrepancy | Receipt or discrepancy |
-| DCS.SCM.CHW.04 | Use and count | Community health worker | Record service consumption, physical count, damage, expiry, and adjustments | Stock movements |
-| DCS.SCM.CHW.05 | Reconcile | System | Exchange eligible transactions and surface mismatches | Destination response |
+## What the CHW records
 
-Post the receipt before downstream adjustments. Do not allow negative stock unless an approved rule says so.
+| Field | Notes |
+|---|---|
+| Current stock balance | Calculated by the app, not editable |
+| Damaged stock | |
+| Expired stock | |
+| Stock on hand | The physical count, before any restock |
+| Adjust stock by | Shown when the count differs from the balance. A reason and quantity for each difference, for example over-reporting |
+| Quantity restocked | Received from the supervisor |
 
-## Decision support
+Commodities include ORS, zinc, artesunate, malaria treatment, malaria RDTs, and family planning commodities (oral pills, condoms, cycle beads, emergency contraceptives).
 
-| ID | Trigger | Rule | Output | Approved by |
-|---|---|---|---|---|
-| DCS.SCM.CHW.DT.01 | Receipt | Quantity matches the issue, or a discrepancy is recorded | Confirmed receipt or review task | Logistics authority |
-| DCS.SCM.CHW.DT.02 | Adjustment | Approved reason, and receipt already posted | Adjustment accepted or rejected | Logistics authority |
+## What the system creates
+
+| Event | FHIR records |
+|---|---|
+| Count or restock | A new current balance per commodity, closing the previous one |
+| Stock reaches zero | A stock-out Flag (SNOMED 419182006) |
+| Stock issued in OpenLMIS | An incoming-stock Observation and a confirm-receipt Task |
 
 ## Integrations
 
 - [Supply issue, receipt and adjustment](../integrations/supply-issue-receipt.md)
+- [Routine aggregate reporting](../integrations/routine-reporting.md) (commodity stock-outs)
 
 ## Standards & FHIR artifacts
 
-See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) for commodity and stock-out profiles.
+eCHIS Commodity and Stock-out Flag profiles. Details in the [Implementation Guide integrated care page](https://palladium-group.github.io/datafi-echis-ig/integrated-care.html).
 
 ## Metadata packages
 
-## Tests
+- The physical count and restock form, the inventory register and profile configs, and one commodity Group per item
 
-Full and partial receipt. Unknown commodity. Discrepancy held for review. Adjustment before receipt blocked. Duplicate transaction prevented. Reconciliation of accepted and rejected transactions.
+See the [Metadata packages index](../standards/metadata-packages.md).

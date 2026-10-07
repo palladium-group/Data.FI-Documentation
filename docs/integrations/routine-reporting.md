@@ -3,13 +3,8 @@ title: Routine aggregate reporting
 description: Approved aggregate values derived from governed individual-level data are submitted by reporting unit and period.
 sidebar_position: 60
 owner: OpenFn
-status: draft
 dcs_id: DCS.INT.REP.01
 ---
-
-:::info Page details
-**Interface ID:** `DCS.INT.REP.01` · **Owner:** OpenFn (proposed) · **Status:** Draft
-:::
 
 ## Overview
 
@@ -19,6 +14,7 @@ dcs_id: DCS.INT.REP.01
 | Pattern | Analytical |
 | Route | Governed warehouse or reporting mart → integration service → national HMIS. Reference: analytics warehouse, OpenFn, DHIS2 aggregate |
 | Trigger | The reporting period closes, or an approved scheduled run begins |
+| OpenFn workflow | WF7 · Warehouse to DHIS2 Aggregate |
 | Used by workflows | [Child health and immunization](../workflows/child-health-immunization.md) and other workflows that feed approved indicators |
 
 ## Components involved
@@ -71,11 +67,40 @@ Submit aggregates only. Do not include person-level records in this exchange.
 
 Periods submitted, values accepted, values rejected, unmapped organization units, and reruns.
 
+## Reference implementation
+
+How OpenFn WF7 implements this interface in the reference eCHIS. Full field mappings are kept in the eCHIS Mapping Specification.
+
+```mermaid
+sequenceDiagram
+  participant W as Warehouse
+  participant O as OpenFn WF7
+  participant D as DHIS2
+  W->>W: Build analytics.dhis2_export
+  W->>O: One payload per period and community health unit
+  O->>D: POST dataValueSets
+```
+
+- **Source:** the `analytics.dhis2_export` table. The warehouse transformation builds one ready-to-send payload per reporting period and community health unit (CHU).
+- **Target:** DHIS2 `dataValueSets` for the **eCHIS Monthly Report** data set (51 indicators).
+- **Period** is `YYYYMM` and is passed through unchanged. **Org unit** is the CHU, which is assigned to the data set directly.
+- OpenFn passes the data set, period, org unit and values through. The indicator logic lives in the warehouse.
+
+### Safeguards
+
+- Zero and empty values are dropped before posting, so blank indicators never reach DHIS2.
+
 ## Standards & FHIR artifacts
 
 Indicators are calculated from governed models fed by [analytics ingestion](./analytics-ingestion.md). Profile definitions remain in the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/).
 
 ## Metadata packages
+
+- DHIS2 eCHIS Monthly Report data set, its 51 data elements and the CHU org units
+- Warehouse `dhis2_export` model
+- OpenFn WF7 job and credentials
+
+See the [Metadata packages index](../standards/metadata-packages.md).
 
 ## Tests
 

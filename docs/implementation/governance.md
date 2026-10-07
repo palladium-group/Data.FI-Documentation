@@ -3,12 +3,7 @@ title: Governance and ownership
 description: Decision rights from national oversight to delivery.
 sidebar_position: 20
 owner: Data.FI
-status: draft
 ---
-
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
 
 Implementation governance connects national leadership, product decisions, and technical delivery. The structure must resolve clinical, program, data, architecture, security, operational, and funding questions. Delivery teams should not have to make policy decisions by default.
 

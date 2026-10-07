@@ -3,14 +3,9 @@ title: Configuration
 description: Configure content, behavior, users, organizations and locations.
 sidebar_position: 40
 owner: Data.FI
-status: draft
 ---
 
-:::info Page details
-**Owner:** Data.FI (proposed) · **Status:** Draft
-:::
-
-Configuration turns approved workflows and requirements into content and behavior that can be tested and released. Track every configured item in a configuration inventory: forms, terminology, settings, repositories, versions, environments, and owners. The [reference architecture](../architecture/index.md) shows one way to host this configuration.
+Configuration turns approved workflows and requirements into content and behavior that can be tested and released. Track every configured item in a configuration inventory: forms, terminology, settings, repositories, versions, environments, and owners. The [reference architecture](../architecture/index.mdx) shows one way to host this configuration.
 
 ## Content and behavior
 

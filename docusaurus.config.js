@@ -51,7 +51,17 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: [
+            './node_modules/@fontsource/hanken-grotesk/400.css',
+            './node_modules/@fontsource/hanken-grotesk/500.css',
+            './node_modules/@fontsource/hanken-grotesk/600.css',
+            './node_modules/@fontsource/hanken-grotesk/700.css',
+            './node_modules/@fontsource/hanken-grotesk/800.css',
+            './node_modules/@fontsource/ibm-plex-mono/400.css',
+            './node_modules/@fontsource/ibm-plex-mono/500.css',
+            './node_modules/@fontsource/ibm-plex-mono/600.css',
+            './src/css/custom.css',
+          ],
         },
       }),
     ],
@@ -74,8 +84,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      mermaid: {
+        theme: {light: 'neutral'},
+      },
+      // Light mode only for now.
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: 'light',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
       navbar: {
         title: 'eCHIS Portal',
@@ -87,7 +103,6 @@ const config = {
             label,
           })),
           {href: FHIR_IG, label: 'FHIR IG', position: 'right'},
-          {href: REPO, label: 'GitHub', position: 'right'},
         ],
       },
       footer: {
@@ -106,7 +121,7 @@ const config = {
             items: [{label: 'Source on GitHub', href: REPO}],
           },
         ],
-        copyright: `Data.FI · Internal working draft · ${new Date().getFullYear()}`,
+        copyright: `Data.FI · ${new Date().getFullYear()}`,
       },
       docs: {
         sidebar: {

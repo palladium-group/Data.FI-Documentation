@@ -1,75 +1,78 @@
 ---
 title: Child health and immunization
-description: Find children due for routine services, screen, counsel, refer and schedule the next contact.
+description: Monthly routine visits, immunizations and sick child assessment for children under five.
 sidebar_position: 40
 owner: Ona
-status: draft
 dcs_id: DCS.MNCH.CH
 ---
 
-:::info Page details
-**Workflow ID:** `DCS.MNCH.CH` (proposed) · **Owner:** Ona (proposed) · **Status:** Draft
-:::
-
 ## Objective
 
-Identify children due for routine services, review available history, support community-level screening and counselling, record services within scope, refer when required, and schedule the next contact.
+Visit every child under five monthly, track immunizations, vitamin A and deworming, assess sick children using WHO IMCI, and refer when needed. The app invokes approved clinical content. It does not invent clinical rules.
 
-## Process header
-
-| Field | Value |
-|---|---|
-| Trigger | A child is due by age, history, task schedule, or catchment assignment |
-| End state | Service within scope recorded, referral created when required, and the next task scheduled |
-| Primary persona | Community health worker |
-| Supporting actors | Caregiver, child, supervisor, facility |
-| Locations | Household and community |
-| Works offline? | Yes, using history available on the device |
-
-## Process
+## How it works
 
 ```mermaid
 flowchart LR
-  S0["Find due child"]
-  S1["Review history"]
-  S2["Assess and serve"]
-  S3["Update record"]
-  S4["Next action"]
-  S0 --> S1 --> S2 --> S3 --> S4
+  A[Child registered in household] --> B[Monthly routine visit]
+  B --> C[Immunizations recorded]
+  B --> D{Child unwell?}
+  D -- Yes --> E[Sick child assessment]
+  E --> F[Referral and closure]
+  B --> F
 ```
 
-## Activities
+1. Children under five join the Children register when they are added to a household.
+2. A monthly **Child Routine visit** task appears. It can only be recorded when due or overdue.
+3. Vaccines are recorded from the child's profile.
+4. A sick child is assessed with **Sick assessment** from the profile menu.
 
-| ID | Activity | Actor | System action | Data created or reused |
-|---|---|---|---|---|
-| DCS.MNCH.CH.01 | Find due child | Community health worker | Select by age, history, task schedule, and catchment | Due task, child record |
-| DCS.MNCH.CH.02 | Review history | Community health worker | Show immunization, growth, prior illness, referrals, and contraindication data available to the worker | History available on the device |
-| DCS.MNCH.CH.03 | Assess and serve | Community health worker | Present approved screening, counselling, community treatment, or referral within scope of practice | Screening and counselling |
-| DCS.MNCH.CH.04 | Update record | System | Create observations, service records, commodity use, and referral as applicable | Service record |
-| DCS.MNCH.CH.05 | Next action | System | Calculate the due service, create the task, and synchronize records | Next due date |
+## What the CHW records
 
-## Clinical content boundary
+| Form | Records |
+|---|---|
+| Child routine visit | How the child is feeling, vaccine card, whether immunizations are up to date, MUAC, swelling, vitamin A (from 6 months), deworming (from 12 months) |
+| Immunizations | Vaccines given and their dates, ticked from the child's profile: BCG, OPV 0 to 3, Penta 1 to 3, Rota 1 to 3, IPV, MR 1 and 2 |
+| Sick child assessment | Danger signs, main symptoms (cough or difficult breathing, diarrhoea, fever), pre-referral treatment, referral |
+| Referral closure | Whether the child reached the facility, the action taken, follow-up |
 
-Specify where the system invokes approved clinical content and decision logic. Do not invent clinical rules. Each rule should identify its source, approving authority, version, effective date, and linked test cases.
+**Sick child danger signs:** unable to drink or breastfeed, vomiting everything, convulsions (recent or now), lethargic or unconscious, chest in-drawing, yellow eyes or hands, blood in stool.
 
-## Decision support
+## Referral triggers
 
-| ID | Trigger | Rule | Output | Approved by |
-|---|---|---|---|---|
-| DCS.MNCH.CH.DT.01 | Assessment | Country-approved screening or referral rule | Service within scope, or referral | Clinical authority |
-| DCS.MNCH.CH.DT.02 | Record update | Approved next-service calculation | Successor task | Program authority |
+| When | Trigger |
+|---|---|
+| Routine visit | Child unwell (go to sick child assessment), immunizations not up to date, red or yellow MUAC, swelling |
+| Sick child assessment | Any danger sign, any severe classification, or any sick child under 2 months: urgent referral |
+
+See [Referral and counter-referral](./referral-counter-referral.md).
+
+## Related surveillance
+
+- **AFP screening.** A positive acute flaccid paralysis screen goes to the [supervisor app](../architecture/components/supervisor-app.md) for approval.
+- **AEFI.** Adverse events following immunization are reported to DHIS2 through [surveillance and alerts](../integrations/surveillance-alerts.md).
+
+## What the system creates
+
+| Form | FHIR records |
+|---|---|
+| Routine visit | Growth, MUAC, vitamin A and deworming observations, a referral when triggered, the next visit task |
+| Immunization | An Immunization per dose, coded with CVX |
+| Sick child assessment | Danger signs and classifications, treatment given, a referral when indicated, a follow-up task |
 
 ## Integrations
 
-- [Community referral to facility](../integrations/community-referral.md)
+- [Community referral to facility](../integrations/community-referral.md) (referral type `child`)
+- [Surveillance and configured alerts](../integrations/surveillance-alerts.md) (AEFI)
 - [Routine aggregate reporting](../integrations/routine-reporting.md)
 
 ## Standards & FHIR artifacts
 
-See the [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) for immunization and related observation profiles.
+eCHIS Immunization (IPS-aligned), Observation, Service Request (Referral), Procedure and Task profiles. Details in the Implementation Guide [integrated care](https://palladium-group.github.io/datafi-echis-ig/integrated-care.html) and [immunization](https://palladium-group.github.io/datafi-echis-ig/immunization.html) pages.
 
 ## Metadata packages
 
-## Tests
+- Child health and immunization questionnaires, the child register config and scheduling definitions
 
-Due child found from schedule. History limited to what the worker may see. Service outside scope blocked. Referral created from an approved rule. Next task calculated once. Aggregate report uses the governed indicator, not a local count.
+See the [Metadata packages index](../standards/metadata-packages.md).
+

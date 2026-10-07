@@ -4,13 +4,8 @@ title: <Workflow name>
 description: <One sentence: what service outcome this workflow achieves.>
 sidebar_position: <10, 20, 30… leave gaps so pages can be inserted later>
 owner: <Team responsible, e.g. Ona>
-status: draft # draft | in-review | approved
 dcs_id: DCS.<DOMAIN>.<PROCESS> # e.g. DCS.MNCH.ANC
 ---
-
-:::info Page details
-**Workflow ID:** `DCS.<DOMAIN>.<PROCESS>` · **Owner:** <team> · **Status:** Draft
-:::
 
 ## Objective
 
