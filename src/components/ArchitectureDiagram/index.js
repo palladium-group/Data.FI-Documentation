@@ -248,11 +248,11 @@ export default function ArchitectureDiagram() {
 
       <section className={clsx(styles.lane, styles.integratedLane)}>
         <h3 className={styles.laneTitle}>
-          Integrated systems <span>Delivery priority P1 to P5</span>
+          Integrated systems
         </h3>
         <div className={styles.streams}>
           {streams.map((s) => (
-            <div key={s.id} className={styles.stream}>
+            <div key={s.id} className={styles.stream} style={{'--accent': s.color}}>
               <div className={styles.streamHead}>
                 <span className={styles.phase}>{s.phase}</span>
                 {s.label}

@@ -192,9 +192,10 @@
   gap: 0.75rem;
   align-items: baseline;
   padding: 0.5rem 0.75rem;
-  border: 1px solid rgba(124, 88, 206, 0.25);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-left: 3px solid var(--accent);
   border-radius: 8px;
-  background: rgba(124, 88, 206, 0.04);
+  background: color-mix(in srgb, var(--accent) 5%, #fff);
   font-size: 0.8rem;
 }
 
@@ -205,7 +206,7 @@
 
 .streamName em {
   margin-left: 0.25rem;
-  color: #7c58ce;
+  color: var(--accent);
   font-style: normal;
   font-weight: 600;
 }

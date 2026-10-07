@@ -70,7 +70,7 @@ function ArchitectureSnapshot() {
 
       <div className={styles.snapshotStreams}>
         {streams.map((s) => (
-          <div key={s.id} className={styles.stream}>
+          <div key={s.id} className={styles.stream} style={{'--accent': s.color}}>
             <span className={styles.streamName}>
               {s.label} <em>{s.phase}</em>
             </span>

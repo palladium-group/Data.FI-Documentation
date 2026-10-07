@@ -6,11 +6,11 @@ const COMPONENTS = '/docs/architecture/components';
 const integ = (slug, label) => ({label, to: `/docs/integrations/${slug}/`});
 
 export const streams = [
-  {id: 'identity', label: 'Identity', phase: 'P1'},
-  {id: 'clinical', label: 'Clinical', phase: 'P2'},
-  {id: 'logistics', label: 'Logistics', phase: 'P3'},
-  {id: 'surveillance', label: 'Surveillance', phase: 'P4'},
-  {id: 'analytics', label: 'Analytics', phase: 'P5'},
+  {id: 'identity', label: 'Identity', phase: 'P1', color: '#c85075'},
+  {id: 'clinical', label: 'Clinical', phase: 'P2', color: '#2880b8'},
+  {id: 'logistics', label: 'Logistics', phase: 'P3', color: '#c8901a'},
+  {id: 'surveillance', label: 'Surveillance', phase: 'P4', color: '#d06830'},
+  {id: 'analytics', label: 'Analytics', phase: 'P5', color: '#7c58ce'},
 ];
 
 export const nodes = [

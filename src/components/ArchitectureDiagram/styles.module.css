@@ -133,6 +133,8 @@
 
 .integratedLane {
   --accent: var(--integrated);
+  border-style: dotted;
+  border-width: 2px;
 }
 
 .diagram .laneTitle {
@@ -275,21 +277,28 @@
 .streams {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.6rem;
 }
 
 .stream {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
+  padding: 0.5rem 0.6rem 0.7rem;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+/* Solid divider between delivery streams. --accent is set per stream from src/data/architecture.js. */
+.stream:not(:last-child) {
+  border-right: 1px solid #c9d3d7;
 }
 
 .streamHead {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
   padding: 0.3rem 0.1rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -297,7 +306,7 @@
 .phase {
   padding: 0.05rem 0.45rem;
   border-radius: 6px;
-  background: var(--integrated);
+  background: var(--accent);
   color: #fff;
   font-size: 0.7rem;
 }
@@ -475,6 +484,15 @@
 
   .streams {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 0.6rem;
+  }
+
+  .stream {
+    border-radius: 10px;
+  }
+
+  .stream:not(:last-child) {
+    border-right: none;
   }
 
   .bandNote,
