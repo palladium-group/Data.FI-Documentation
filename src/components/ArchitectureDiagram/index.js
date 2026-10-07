@@ -216,7 +216,7 @@ export default function ArchitectureDiagram() {
 
       <section className={clsx(styles.lane, styles.coreLane)}>
         <h3 className={styles.laneTitle}>
-          Core platform <span>Data.FI OpenSRP · Ona</span>
+          Core platform
         </h3>
         <div className={styles.coreRow}>
           <div className={styles.stack}>
