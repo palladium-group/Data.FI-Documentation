@@ -10,6 +10,7 @@ const sections = [
   {id: 'integrations', label: 'Integrations'},
   {id: 'standards', label: 'Standards'},
   {id: 'implementation', label: 'Implementation'},
+  {id: 'user-guides', label: 'User guides'},
 ];
 
 /** @type {import('@docusaurus/types').Config} */

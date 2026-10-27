@@ -1,0 +1,40 @@
+.figure {
+  margin: 1.5rem 0 2rem;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* MDX wraps each Markdown image in a paragraph. */
+.images > p {
+  margin: 0;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.images img {
+  display: block;
+  max-height: 32rem;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--echis-line);
+  border-radius: 10px;
+  background: var(--echis-bg-soft);
+}
+
+.wide .images img {
+  max-height: none;
+  width: 100%;
+}
+
+.caption {
+  margin-top: 0.6rem;
+  color: var(--echis-ink-faint);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}

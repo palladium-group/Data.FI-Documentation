@@ -90,4 +90,4 @@ See the [Metadata packages index](../../standards/metadata-packages.md).
 
 ## Setup & configuration
 
-See [Configuration](../../implementation/configuration.md) and the supervisor guide under [Training](../../implementation/training.md).
+See [Configuration](../../implementation/configuration.md) and the [Supervisor app user guide](../../user-guides/supervisor-app.mdx).

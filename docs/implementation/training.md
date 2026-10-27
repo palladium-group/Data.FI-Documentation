@@ -24,4 +24,8 @@ flowchart LR
 
 ## User guides
 
-Role-based community health worker, supervisor, administrator, and support guides are companion resources. They describe current application behavior. This page describes how training is planned and evidenced. Link each guide from the release package when it is approved.
+Role-based guides are companion resources. They describe current application behavior. This page describes how training is planned and evidenced. Link each guide from the release package when it is approved.
+
+- [CHW (VHT) app user guide](../user-guides/vht-app/index.md)
+- [Supervisor app user guide](../user-guides/supervisor-app.mdx)
+- [Administrator guide](../user-guides/admin-portal.mdx)

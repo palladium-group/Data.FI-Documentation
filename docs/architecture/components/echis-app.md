@@ -76,4 +76,4 @@ See the [Metadata packages index](../../standards/metadata-packages.md).
 
 Each device needs the application ID, a username and a password from the support team. If a device was used by another VHT, clear the app data before the new user logs in.
 
-See [Configuration](../../implementation/configuration.md) and the VHT user guide under [Training](../../implementation/training.md).
+See [Configuration](../../implementation/configuration.md) and the [CHW (VHT) app user guide](../../user-guides/vht-app/index.md).

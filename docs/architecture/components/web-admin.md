@@ -45,4 +45,4 @@ See the [Metadata packages index](../../standards/metadata-packages.md).
 
 ## Setup & configuration
 
-See [Configuration](../../implementation/configuration.md) and the administrator guide under [Training](../../implementation/training.md).
+See [Configuration](../../implementation/configuration.md) and the [Administrator guide](../../user-guides/admin-portal.mdx).

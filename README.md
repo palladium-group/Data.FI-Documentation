@@ -19,6 +19,7 @@ npm run serve   # serve the production build (search works here)
 
 ```
 docs/                 content, one folder per top-menu section
+                      (user-guides/ holds the role-based app guides, screenshots beside the pages)
 templates/            starting points for new pages
 src/pages/index.js    home page
 docusaurus.config.js  site settings

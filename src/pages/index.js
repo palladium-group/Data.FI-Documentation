@@ -34,6 +34,11 @@ const sections = [
     to: '/docs/implementation/',
     body: 'Governance, configuration, testing, go-live, training and operations.',
   },
+  {
+    title: 'User guides',
+    to: '/docs/user-guides/',
+    body: 'Step-by-step guides to the CHW app, the supervisor app and the admin portal.',
+  },
 ];
 
 const journeys = [
@@ -42,6 +47,7 @@ const journeys = [
   ['Connect eCHIS to an MPI, EMR, LMIS or DHIS2', '/docs/integrations/'],
   ['Find FHIR profiles, value sets and metadata packages', '/docs/standards/'],
   ['Plan governance, rollout and operations', '/docs/implementation/'],
+  ['Learn how to use the CHW app, supervisor app or admin portal', '/docs/user-guides/'],
 ];
 
 const coreSystems = ['CHW and supervisor apps', 'Web admin', 'Keycloak', 'HAPI FHIR'];

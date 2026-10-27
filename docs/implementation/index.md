@@ -30,4 +30,4 @@ Maintain traceability from each approved user need to a workflow, requirement, c
 - [Operations and sustainability](./operations-sustainability.md)
 - [Templates and assets](./templates.md)
 
-Service workflows, the reference architecture, exchanges, and standards live in their own sections: [Workflows](../workflows/index.md), [Architecture](../architecture/index.mdx), [Integrations](../integrations/index.md), and [Standards](../standards/index.md).
+Service workflows, the reference architecture, exchanges, standards, and the role-based application guides live in their own sections: [Workflows](../workflows/index.md), [Architecture](../architecture/index.mdx), [Integrations](../integrations/index.md), [Standards](../standards/index.md), and [User guides](../user-guides/index.md).

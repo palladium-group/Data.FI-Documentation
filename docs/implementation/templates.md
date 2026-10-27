@@ -43,7 +43,7 @@ For each integration, also keep a workflow narrative, sequence diagram, field ma
 
 - Digital Community System Toolkit, including workshop and country-roadmap resources
 - [eCHIS FHIR Implementation Guide](https://palladium-group.github.io/datafi-echis-ig/) and its computable artifacts
-- Role-based community health worker, supervisor, administrator, and support guides
+- Role-based [user guides](../user-guides/index.md) for the community health worker app, supervisor app and administration portal
 - [Reference architecture](../architecture/index.mdx) and [environment specification](../architecture/environments-infrastructure.md)
 - Integration workflow repository, mapping specifications, test fixtures, and runbooks
 - Country adaptation workbook and implementation evidence repository
